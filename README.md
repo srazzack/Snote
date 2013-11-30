@@ -16,7 +16,7 @@
 <li>theming, slideshow and additional functionality is slowly being added.</li>
 </ol>
 
-<h3>About<h3>
+<h3>About</h3>
 <ol>
 <li> The Powerpresentation application is a bit more extensive in functionality than this current version of Snote.</li>
 <li>With the use of Node.js, if any file thats requested from the server changes, Node.js will automatically read the new file once its changed. Changes will ne reflected upon refresh</li>
