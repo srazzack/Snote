@@ -9,8 +9,8 @@
 <li>Download the compressed zip for this repository.</li>
 <li>Have node.js installed on your computer; please read instructions how to at nodejs.org</li>
 <li>In the browser, goto to 'http://localhost:3000/'</li>
-<li>The application should lood and you can click on a slide from the left handside slides-bar: It will rend the slide onto the main view.</li>
-<li>You can get the slide by clicking the on the text to rewrite.</li>
+<li>The application should lood and you can click on a slide from the left handside slides-bar: It will render the slide onto the main view.</li>
+<li>You can edit the slide content by clicking the on the text to rewrite.</li>
 <li>You can add slides by clicking on the plus sign up at the top of the webpage. Or, alternaticly you can press the plus button on your computer's keyboard.</li>
 <li>To delete the slide you can do similarly as you added a slide. Click on the 'minus' button or used the 'delete' or 'minus' button on your computer's keyboard.</li>
 <li>theming, slideshow and additional functionality is slowly being added.</li>
