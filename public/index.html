@@ -89,11 +89,11 @@
     <div class="container-fluid">
 
             <div id="presentationWell" class="row-fluid">
-                
                 <div id="slidesBar" class="col-md-2 well"></div>
-
                 <div id="slideContainer" class="col-md-10 well">
-                    <div id="activeSlide" class="activeSlide fullscreen"></div>
+                    <div id="activeSlide" class="activeSlide fullscreen">
+                      <div id="slideshow"></div>
+                    </div>
                     <div id="slideEditOptions"></div>
                     <div id="stylePannel"></div>
                   <div id="slideLayout"></div>
@@ -140,7 +140,7 @@
                         <p id="slideContent" class="slideBullets"><%= slide.get("content") %></p>
                     </box>
                     
-                    <div >
+                    <div>
                         <button id="slideUp" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
                             <span class="glyphicon glyphicon-arrow-up"></span>
                         </button>
@@ -164,6 +164,31 @@
                 <p id="slideContent" class="slideBullets"><%= content %></p>
             </div>
         </script>
+
+        <script id="slideShowTemplate" type="text/template">
+            <box id="SlideShowslide:<%= slide.cid %>" class=".fullscreen slide" data-id="<%= slide.cid %>">
+                <li id="slideTitle" class="slideTitles"><%= slide.cid %>:<%= slide.get("title") %></li>
+                <li id="slideHeader" class="slideHeaders"><%= slide.get("header") %></li>
+                <p id="slideContent" class="slideBullets"><%= slide.get("content") %></p>
+            </box>
+        </script>
+        <script id="slideShowControlsTemplate" type="text/template">
+            <div>
+                <button id="prevSlide" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </button>
+                <button id="playSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                  <span class="glyphicon glyphicon-play"></span>
+                </button>
+                <button id="pauseSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                  <span class="glyphicon glyphicon-pause"></span>
+                </button>
+                <button id="nextSlide" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </script>
+
         <script type="text/javascript" src="src/models.slide.js"></script>
         <script type="text/javascript" src="src/collections.slides.js"></script>
         <script type="text/javascript" src="src/models.presentation.js"></script>
@@ -171,9 +196,9 @@
         <script type="text/javascript" src="src/models.theme.js"></script>
         <script type="text/javascript" src="src/collections.themes.js"></script>
         <script type="text/javascript" src="src/views.activepresentation.js"></script>
+                <script type="text/javascript" src="src/views.slideshow.js"></script>
         <script type="text/javascript" src="src/views.activeslide.js"></script>
         <script type="text/javascript" src="src/app.js"></script>
-        <script type="text/javascript" src="src/views.slideshow.js"></script>
 
       <hr>
 
