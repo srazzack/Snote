@@ -1,10 +1,8 @@
-var SlideshowView = Backbone.View.extend({
+var SlideShowView = Backbone.View.extend({
  
   el: '#slideshow',
 
   initialize: function() {
-    var element = e.currentTarget;
-
         if(this.$el.requestFullScreen) {
             this.$el.requestFullScreen();
         } 
@@ -15,6 +13,9 @@ var SlideshowView = Backbone.View.extend({
         else if(this.$el.webkitRequestFullScreen) {
             console.log("webkit");
             this.$el.webkitRequestFullScreen();
+        }
+        else{
+          console.log("something is wrong with use of the Fullscreen API");
         }
   }, 
 
@@ -31,7 +32,7 @@ var SlideshowView = Backbone.View.extend({
   render: function() {
   },
  
-  transition: function(from, to) {
+  transition: function() {
   },
  
  

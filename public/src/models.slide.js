@@ -21,6 +21,7 @@ var Slide = Backbone.Model.extend({
 			console.log("A header has been added, updated or deleted");
 		});
 		this.on("destroy", function(){
+			console.log("in the slide model");
 			console.log("destroying", arguments);
 		}); 
 	},

@@ -1,6 +1,6 @@
 var Presentation = Backbone.Model.extend({
 	defaults: {
-	 	title:"",
+	 	title:"", 
 	 	slides: new SlidesCollection(),
 	 	selectedTheme: "whitetheme"
 	},

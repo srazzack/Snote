@@ -4,6 +4,11 @@ var SlidesCollection = Backbone.Collection.extend({
 
 	deleteSlide: function (slide) {
 		this.remove(slide);
+		console.log("In slides collection: function deleteSlide");
+		this.model.destroy({success: function(model, response){
+			console.log(model, response);
+			}
+		});
 	},
 
 	moveSlide:function(slide, newIndex) {

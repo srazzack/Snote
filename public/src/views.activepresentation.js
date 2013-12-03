@@ -13,7 +13,7 @@ var ActivePresentationView = Backbone.View.extend({
         this.collection.on("remove", this.render, this);
         /*this.collection.on("remove", function() {
             console.log("this code ran: remove", arguments);
-            /*
+            
             if(arguments[0] instanceof Slide) {
                 console.log('about to destroy a slide');
                 arguments[0].destroy(); 
@@ -28,9 +28,9 @@ var ActivePresentationView = Backbone.View.extend({
             this.render();
         }, this); */
 
-        /*this.collection.on("destroy", function() {
+        this.collection.on("destroy", function() {
             arguments[0].destroy();
-        });*/
+        });
 
         $(document).bind("keyup", _.bind(this.keypressHandler, this));
     },
@@ -46,8 +46,8 @@ var ActivePresentationView = Backbone.View.extend({
         "click #deleteSlide": "deleteSelectedSlide",
         "click #deleteTargetSlide": "deleteTargetSlide",
         "click #slideUp": "moveUp",
-        "click #slideDown": "moveDown",
-        "dblclick .fullscreen": "launchFullScreen"
+        "click #slideDown": "moveDown"
+        //"dblclick .fullscreen": "launchFullScreen"
     },
 
     keypressHandler: function(e) {
@@ -79,7 +79,10 @@ var ActivePresentationView = Backbone.View.extend({
     },
 
     deleteTargetSlide: function(e){
-        this.collection.remove(this.getSlide(e));
+        var targetSlide = this.getSlide(e);
+        console.log(targetSlide);
+        targetSlide.destroy();
+        this.collection.remove(targetSlide);
     },
 
     deleteSelectedSlide: function(e) {
@@ -87,10 +90,14 @@ var ActivePresentationView = Backbone.View.extend({
         
         if(selected){
             this.collection.remove(selected);
+            selected.destroy();
+            console.log("here destory code ran: selected = true");
             console.log(this.collection.models.length);
         }
         else {
-            this.collection.remove(this.collection.at(this.collection.models.length-1));
+            var lastSlide = this.collection.at(this.collection.models.length-1);
+            this.collection.remove(lastSlide);
+            lastSlide.destroy();
             console.log(this.collection.models.length);
         }
     },
@@ -104,8 +111,9 @@ var ActivePresentationView = Backbone.View.extend({
 
     savePresentation: function () {
         console.log(this.collection.save());
+        this.collection.save();
     },
-
+/*
     launchFullScreen: function (e) {
         console.log(e.currentTarget);
         var element = e.currentTarget;
@@ -123,5 +131,5 @@ var ActivePresentationView = Backbone.View.extend({
         }
 
     }
-
+*/
 });

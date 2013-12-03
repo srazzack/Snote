@@ -24,20 +24,27 @@ var ActiveSlideView = Backbone.View.extend({
                 that.model.set({content:text});
             }
         });
-        
         return this;    
     },
 
     events: {
         "click #saveSlide": "saveSlide",
+        "click #activeSlide": "startSlideShow"
+
     },
 
-    saveSlide: function (e) {
+    saveSlide: function(e) {
         console.log(this.model.save());
         this.model.save();
     },
 
-    slideStyling: function () {
+    startSlideShow: function() {
+        console.log(sc);
+        var slideShow = new SlideShowView({collection: sc});
+        slideShow.render();
+    },
+
+    slideStyling: function() {
         $("#fs").change(function() {
 
         $('.changeMe').css("font-family", $(this).val());
