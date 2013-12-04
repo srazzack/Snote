@@ -1,5 +1,4 @@
 var SlideShowView = Backbone.View.extend({
- 
   el: "#app",
   currentSlide: 0,
   templates: {
@@ -11,9 +10,11 @@ var SlideShowView = Backbone.View.extend({
   }, 
 
   render: function() {
-      console.log(this.collection.at(this.currentSlide));
-      this.$el.find("#slideShow").html(this.templates["slideShow"](this.collection.at(this.currentSlide)));
+      var model = this.collection.at(this.currentSlide);
+      console.log(model.get("title"));
+      this.$el.find("#slideShow").html(this.templates["slideShow"](model));
 
+      console.log(this.$el.find("#slideShow").webkitRequestFullScreen);
       if(this.$el.find("#slideShow").requestFullScreen) {
           this.$el.find("#slideShow").requestFullScreen();
       } 
@@ -26,14 +27,14 @@ var SlideShowView = Backbone.View.extend({
           this.$el.find("#slideShow").webkitRequestFullScreen();
       }
       else{
-          console.log("something is wrong with use of the Fullscreen API");
+          console.log("something is wrong with your use of the Fullscreen API, astaghfirullah");
       }
   },
 
   events: {
-      "#prevSlide":"showPrevious",
-      "#nextSlide":"showNext",
-      "#playSlideShow":"play"
+      "click #prevSlide":"showPrevious",
+      "click #nextSlide":"showNext",
+      "click #playSlideShow":"play"
   },
 
   getSlide: function(e){

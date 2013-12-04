@@ -166,24 +166,22 @@
         </script>
 
         <script id="slideShowTemplate" type="text/template">
-            <box id="SlideShowslide:<%= slide.cid %>" class=".fullscreen slide" data-id="<%= slide.cid %>">
-                <li id="slideTitle" class="slideTitles"><%= slide.cid %>:<%= slide.get("title") %></li>
-                <li id="slideHeader" class="slideHeaders"><%= slide.get("header") %></li>
-                <p id="slideContent" class="slideBullets"><%= slide.get("content") %></p>
+            <box id="SlideShowslide:<%= this.cid %>" class=".fullscreen slide" data-id="<%= this.cid %>">
+                <li id="slideTitle" class="slideTitles"><%= this.cid %>:<%= this.get("title") %></li>
+                <li id="slideHeader" class="slideHeaders"><%= this.get("header") %></li>
+                <p id="slideContent" class="slideBullets"><%= this.get("content") %></p>
             </box>
-        </script>
-        <script id="slideShowControlsTemplate" type="text/template">
             <div>
-                <button id="prevSlide" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                <button id="prevSlide" type="button" class="btn btn-default btn-sm" data-id="<%= this.cid %>">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </button>
-                <button id="playSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                <button id="playSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= this.cid %>">
                   <span class="glyphicon glyphicon-play"></span>
                 </button>
-                <button id="pauseSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                <button id="pauseSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= this.cid %>">
                   <span class="glyphicon glyphicon-pause"></span>
                 </button>
-                <button id="nextSlide" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                <button id="nextSlide" type="button" class="btn btn-default btn-sm" data-id="<%= this.cid %>">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
             </div>

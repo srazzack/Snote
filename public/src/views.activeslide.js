@@ -29,7 +29,7 @@ var ActiveSlideView = Backbone.View.extend({
 
     events: {
         "click #saveSlide": "saveSlide",
-        "click #activeSlide": "startSlideShow"
+        "dblclick #activeSlide": "startSlideShow"
 
     },
 
