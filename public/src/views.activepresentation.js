@@ -72,6 +72,12 @@ var ActivePresentationView = Backbone.View.extend({
         this.collection.moveDown(this.getSlide(e));
     },
 
+    startSlideShow: function() {
+        console.log(sc);
+        var slideShow = new SlideShowView({collection: sc});
+        slideShow.render();
+    },
+    
     selectedSlideRender: function(e){
         var sv = new ActiveSlideView({model:this.getSlide(e)});
         sv.render();

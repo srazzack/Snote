@@ -4,11 +4,11 @@ var http = require('http'), fs  = require('fs'),
      cache = {}, cacheLimit = '', cacheConfig = {size: 15}; 
 
 var users = [{ id:24, name:'omar', address:''}, { id:424, name:'shafi', address:''}, { id:300, name:'iman', address:''}];
-var slides = [{title: "this is the first slide", header: "this is the first header", content: "this is finally the content" },
-              {title: "this is the second slide", header: "this is the second header", content: "this is second the content" },
-              {title: "this is the third slide", header: "this is the third header", content: "this is third the content" },
-              {title: "this is the fourth slide", header: "this is the fourth header", content: "this fourth the content" }, 
-              {title: "this is the fourth slide", header: "this is the fourth header", content: "this fifth content" }];
+var slides = [{title: "Learning D3.js", header: "What are Data Driven Documents?", content: "D3.js (or just D3 for Data-Driven Documents) is a JavaScript library that uses digital data to drive the creation and control of dynamic and interactive graphical forms which run in web browsers. It is a tool for data visualization in W3C-compliant computing, making use of the widely implemented Scalable Vector Graphics (SVG), JavaScript, HTML5, and Cascading Style Sheets (CSS3) standards. " },
+              {title: "A simple alternative: Raphael.js", header: "Simplicity at its best", content: "Raphaël is a small JavaScript library that should simplify your work with vector graphics on the web. If you want to create your own specific chart or image crop and rotate widget, for example, you can achieve it simply and easily with this library." },
+              {title: "What about MVC frameworks such as Backbone.js", header: "Why should one use an MVC for web applications?", content: "Backbone.js gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface." },
+              {title: "Google's framework: Angular.js", header: "Why Angular.js", content: "HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications. AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop." }, 
+              {title: "Twitter Bootstrap", header: "Why use Bootstrap?", content: "At its core, Bootstrap is just CSS, but it's built with Less, a flexible pre-processor that offers much more power and flexibility than regular CSS. With Less, we gain a range of features like nested declarations, variables, mixins, operations, and color functions. " }];
 
 function setCacheLimit(){
   cacheLimit = cacheConfig.size;
@@ -79,7 +79,8 @@ var server = http.createServer(function(request, response) {
   console.log("this request: ", request.url);
   var absPath = false, usersPattern = /^\/user\/?$/, 
       userPattern = /^\/user\/[0-9]\/?/, 
-      slidePattern = /^\/slide\/?$/;
+      slidePattern = /^\/slide\/?$/,
+      imagePattern = /\.jpg$/;
 
   if (request.url == '/') {
     absPath = './public/index.html';

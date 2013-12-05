@@ -7,28 +7,13 @@ var SlideShowView = Backbone.View.extend({
 
   initialize: function() {
       console.log("here we are in the slideshowview");
+      $(document).bind("keyup", _.bind(this.keypressHandler, this));
   }, 
 
   render: function() {
       var model = this.collection.at(this.currentSlide);
       console.log(model.get("title"));
-      this.$el.find("#slideShow").html(this.templates["slideShow"](model));
-
-      console.log(this.$el.find("#slideShow").webkitRequestFullScreen);
-      if(this.$el.find("#slideShow").requestFullScreen) {
-          this.$el.find("#slideShow").requestFullScreen();
-      } 
-      else if(this.$el.find("#slideShow").mozRequestFullScreen) {
-          console.log(moz);
-          this.$el.find("#slideShow").mozRequestFullScreen();
-      } 
-      else if(this.$el.find("#slideShow").webkitRequestFullScreen) {
-          console.log("webkit");
-          this.$el.find("#slideShow").webkitRequestFullScreen();
-      }
-      else{
-          console.log("something is wrong with your use of the Fullscreen API, astaghfirullah");
-      }
+      this.$el.find("#activeSlide").html(this.templates["slideShow"]({model:model}));
   },
 
   events: {
@@ -37,22 +22,62 @@ var SlideShowView = Backbone.View.extend({
       "click #playSlideShow":"play"
   },
 
-  getSlide: function(e){
+  keypressHandler: function(e) {
+        console.log(e.keyCode);
+        if(e.keyCode === 39) {
+            console.log("The current slide is set to: ",this.currentSlide);
+            this.showNext();
+        }
+        else if(e.keyCode === 37) {
+            this.showPrevious();
+            console.log("The current slide is set to: ",this.currentSlide);
+        }
+  },
+
+  getSlide: function(){
       return this.collection.get($(e.currentTarget).attr("data-id"));
   },
 
-  showPrevious: function(e){
-
+  showPrevious: function(){
+      if(this.currentSlide > 0 && this.currentSlide <= this.collection.length-1){
+        //this.render();
+        this.currentSlide--;
+        this.render();
+        console.log("The current slide is set to: ",this.currentSlide);
+      }
   },
   
-  showNext: function(e){
+  showNext: function(){
+      console.log('showNext', this);
+      if(this.currentSlide < this.collection.length-1){
+          //this.render();
+          this.currentSlide++;
+          this.render();
+          console.log("The current slide is set to: ",this.currentSlide);
+          
+      }
+      else if(this.currentSlide == this.collection.length-1){
+          //this.render();
+          //this.currentSlide = 0;
+          //this.render();
+          console.log("the currentSlide is set to: ", this.currentSlide);
+          clearInterval(this.intervalId);
+      }
+  },
+ 
+  play: function() {
+      this.state = "play";
+      console.log('play', this);
+      var self = this;
+
+      this.intervalId = setInterval(function() {
+          console.log('inside callback', self);
+          self.showNext();
+      }, 1200);
 
   },
- 
-  play: function(e) {
-  },
- 
-  pause: function(e) {
+
+  pause: function() {
+      this.state = "paused";
   }
-
 });

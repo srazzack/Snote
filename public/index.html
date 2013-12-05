@@ -9,16 +9,15 @@
 
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" type="text/css" media="screen" title="master" charset="utf-8">
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" title="master" charset="utf-8">
-    
     <script src='lib/jquery1.9.1.js'></script>
     <script src='lib/j1.9.1.js'></script>
     <script src='lib/underscore.js'></script>
     <script src='lib/backbone.js'></script>
     <script src='lib/jquery.inline.js'></script>
 
-    <style type="text/css">
+   <style type="text/css">
       body {
-        padding-top: 60px;
+        padding-top: 50px;
         padding-bottom: 40px;
       }
       .sidebar-nav {
@@ -57,10 +56,10 @@
 
   <body>
   <div id="app">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-            <div id="controls" class="center">
+            <div id="controls" class="">
                 <button id="deleteSlide" type="button" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-minus"></span>
                 </button>
@@ -69,6 +68,18 @@
                 </button>
                 <button id="addSlide" type="button" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button id="prevSlide" type="button" class="btn btn-default btn-sm" data-id="<%= model.cid %>">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </button>
+                <button id="playSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= model.cid %>">
+                  <span class="glyphicon glyphicon-play"></span>
+                </button>
+                <!--<button id="pauseSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= model.cid %>">
+                  <span class="glyphicon glyphicon-pause"></span>
+                </button> -->
+                <button id="nextSlide" type="button" class="btn btn-default btn-sm" data-id="<%= model.cid %>">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
             </div> 
           <a class="brand" href="#"></a>
@@ -89,14 +100,13 @@
     <div class="container-fluid">
 
             <div id="presentationWell" class="row-fluid">
-                <div id="slidesBar" class="col-md-2 well"></div>
-                <div id="slideContainer" class="col-md-10 well">
-                    <div id="activeSlide" class="activeSlide fullscreen">
-                      <div id="slideshow"></div>
-                    </div>
+                <div id="slidesBar" class="col-md-2 well slidesBar"></div>
+                <div id="slideContainer" class="col-md-10 well slideContainer">
+                    <div id="activeSlide" class="fullscreen"></div>
+                    <div id="slideShow"></div>
                     <div id="slideEditOptions"></div>
                     <div id="stylePannel"></div>
-                  <div id="slideLayout"></div>
+                  <!-- <div id="slideLayout"></div>
 
                   <div id="textStyle"><div>
                       <form id="myform">
@@ -114,78 +124,62 @@
                             <option value="20">20</option>
                             <option value="30">30</option>
                         </select>
-                    </form>
+                      </form>
                   <div id="mediaStyle"><div>
-                </div>
-                    </div>
+                </div> 
+                    </div> -->
 
                 </div>
                 <div class="col-md-1"></div>
-
-                
             </div>
-            
         </div>
-        
-
         <script id="presViewTemplate" type="text/template">
 
                 <% _.each(models, function (slide) { %>
-                  <div class="row-fluid">
-                  <hr>
-                  
+                    
                     <box id="slide:<%= slide.cid %>" class="slide col-md-3" data-id="<%= slide.cid %>">
-                        <li id="slideTitle" class="slideTitles"><%= slide.cid %>:<%= slide.get("title") %></li>
+                        <h1 id="slideTitle" class="slideTitles"><%= slide.get("title") %></h1>
                         <li id="slideHeader" class="slideHeaders"><%= slide.get("header") %></li>
                         <p id="slideContent" class="slideBullets"><%= slide.get("content") %></p>
                     </box>
-                    
-                    <div>
-                        <button id="slideUp" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                    <box class="targetSlideContBox">
+                      <div class="row-fluid">
+                        <div><%= slide.cid %></div>
+                        <button id="slideUp" type="button" class="btn btn-default btn-xs" data-id="<%= slide.cid %>">
                             <span class="glyphicon glyphicon-arrow-up"></span>
                         </button>
-                        <button id="slideDown" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                        <button id="slideDown" type="button" class="btn btn-default btn-xs" data-id="<%= slide.cid %>">
                             <span class="glyphicon glyphicon-arrow-down"></span>
                         </button>
-                        <button id="deleteTargetSlide" type="button" class="btn btn-default btn-sm" data-id="<%= slide.cid %>">
+                        <button id="deleteTargetSlide" type="button" class="btn btn-default btn-xs" data-id="<%= slide.cid %>">
                           <span class="glyphicon glyphicon-minus"></span>
                         </button>
-                    </div>
+                      </div>
+                    </box>
+                    
+                    
                 <% }) %>
-            
-            
-            
         </script>
 
         <script id="slideTemplate" class="center" type="text/template">
-            <div>
-                <h1 id="slideTitle" class="slideTitles"><%= title %></h1>
-                <h2 id="slideHeader" class="slideHeaders"><%= header %></h2>
-                <p id="slideContent" class="slideBullets"><%= content %></p>
-            </div>
+        
+        <box class="activeSlide col-md-3">
+        <h1 id="slideTitle" class="slideTitles"><%= title %></h1>
+
+          <li id="slideHeader" class="slideHeaders"><%= header %></li>
+          <p id="slideContent" class="slideBullets"><%= content %></p>
+
+        </box>
         </script>
 
         <script id="slideShowTemplate" type="text/template">
-            <box id="SlideShowslide:<%= this.cid %>" class=".fullscreen slide" data-id="<%= this.cid %>">
-                <li id="slideTitle" class="slideTitles"><%= this.cid %>:<%= this.get("title") %></li>
-                <li id="slideHeader" class="slideHeaders"><%= this.get("header") %></li>
-                <p id="slideContent" class="slideBullets"><%= this.get("content") %></p>
+
+            <box id="slide:<%= model.cid %>" class="activeSlide col-md-3" data-id="<%= model.cid %>">
+                <h1 id="slideTitle" class="slideTitles"><%= model.get("title") %></h1>
+                <li id="slideHeader" class="slideHeaders"><%= model.get("header") %></li>
+                <p id="slideContent" class="slideBullets"><%= model.get("content") %></p>
             </box>
-            <div>
-                <button id="prevSlide" type="button" class="btn btn-default btn-sm" data-id="<%= this.cid %>">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </button>
-                <button id="playSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= this.cid %>">
-                  <span class="glyphicon glyphicon-play"></span>
-                </button>
-                <button id="pauseSlideShow" type="button" class="btn btn-default btn-sm" data-id="<%= this.cid %>">
-                  <span class="glyphicon glyphicon-pause"></span>
-                </button>
-                <button id="nextSlide" type="button" class="btn btn-default btn-sm" data-id="<%= this.cid %>">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </button>
-            </div>
-        </script>
+      </script>
 
         <script type="text/javascript" src="src/models.slide.js"></script>
         <script type="text/javascript" src="src/collections.slides.js"></script>

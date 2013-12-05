@@ -13,9 +13,7 @@ var Presentation = Backbone.Model.extend({
 	},
 
 	initialize: function(){
-
 		//this.validate();
-
 		this.on("change:title", function(model){
 			console.log('title changed to: ' + model.get("title"));
 		});

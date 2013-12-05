@@ -1,24 +1,42 @@
 .activeSlide {
-    outline: 1px solid #aaa;
-    width: 650px;
-    height: 650px;
-    min-height: 275px!important;
+    outline: 0px solid #aaa;
+    width: 900px;
+    height: 675px;
+    min-height: 675px!important;
+    min-width: 900px!important;
     background-color: #fff;
+    background-image: url("theme1bkgrndlg.jpg");
     margin: 5px;
-    margin-right: 450px;
+    font-size: 200%;
 }
 
-.row .col {
-    width: auto;
-    height: auto;
+.navbar {
+    background-color: #F0F0F0;
+}
+.slidesBar {
+    background-color: #f9fafc;
+}
+.slideContainer {
+    background-color: #8f949b;
 }
 
 .slide {
-    outline: 2px solid #aaa;
+    outline: 1px solid #aaa;
     width: 200px;
-    height: 200px;
+    height: 150px;
     min-height: 100px!important;
     background-color: #fff;
+    float: right;
+    margin: 5px;
+    background-image: url('theme1bkgrndsm.jpg');
+    font-size: 45%;
+}
+
+.targetSlideContBox {
+    outline: 0px solid #aaa;
+    width: 200px;
+    height: 22px;
+    min-height: 22px!important;
     float: right;
     margin: 5px;
     font-size: 55%;
