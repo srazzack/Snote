@@ -57,10 +57,6 @@ var SlideShowView = Backbone.View.extend({
           
       }
       else if(this.currentSlide == this.collection.length-1){
-          //this.render();
-          //this.currentSlide = 0;
-          //this.render();
-          console.log("the currentSlide is set to: ", this.currentSlide);
           clearInterval(this.intervalId);
       }
   },

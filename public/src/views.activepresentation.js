@@ -28,9 +28,9 @@ var ActivePresentationView = Backbone.View.extend({
             this.render();
         }, this); */
 
-        this.collection.on("destroy", function() {
+        /*this.collection.on("destroy", function() {
             arguments[0].destroy();
-        });
+        });*/
 
         $(document).bind("keyup", _.bind(this.keypressHandler, this));
     },
@@ -77,7 +77,7 @@ var ActivePresentationView = Backbone.View.extend({
         var slideShow = new SlideShowView({collection: sc});
         slideShow.render();
     },
-    
+
     selectedSlideRender: function(e){
         var sv = new ActiveSlideView({model:this.getSlide(e)});
         sv.render();
@@ -87,7 +87,7 @@ var ActivePresentationView = Backbone.View.extend({
     deleteTargetSlide: function(e){
         var targetSlide = this.getSlide(e);
         console.log(targetSlide);
-        targetSlide.destroy();
+        this.collection.deleteSlide(targetSlide);
         this.collection.remove(targetSlide);
     },
 
@@ -96,21 +96,21 @@ var ActivePresentationView = Backbone.View.extend({
         
         if(selected){
             this.collection.remove(selected);
-            selected.destroy();
+            this.collection.deleteSlide(selected);
             console.log("here destory code ran: selected = true");
             console.log(this.collection.models.length);
         }
         else {
             var lastSlide = this.collection.at(this.collection.models.length-1);
             this.collection.remove(lastSlide);
-            lastSlide.destroy();
+            this.collection.deleteSlide(lastSlide);
             console.log(this.collection.models.length);
         }
     },
 
     addDefaultSlide: function() {
         console.log("here");
-        var slide = {title:"please add a title here", header: "please add a header to your slide here", content: "please add some content here"};
+        var slide = new Slide({title:"please add a title here", header: "please add a header to your slide here", content: "please add some content here"});
         this.collection.add(slide);
         console.log(this.collection);
     },

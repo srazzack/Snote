@@ -10,10 +10,8 @@ var Slide = Backbone.Model.extend({
 	initalize: function(){
 
 		this.validate();
-
 		this.id = _.uniqueId('slide_');
-
-
+		
 		this.on("change:title", function(model){
 			console.log('title changed to: ' + model.get("title"));
 		});
