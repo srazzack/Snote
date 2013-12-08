@@ -125,6 +125,7 @@ var server = http.createServer(function(req, res){
       break;  
     case 'DELETE':
       var path = url.parse(req.url).pathname;
+      console.log(parseInt(path.slice(1), 10));
       var i = parseInt(path.slice(1), 10);
 
       //check to see if the id is a number

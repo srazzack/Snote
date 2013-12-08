@@ -16,6 +16,7 @@ app.configure(function(){
 });
 
 app.get('/slide/:title', function(request, response){
+	console.log("this request: ", request.url);
     try {
             response.send(Slide.get(request.params.title));
     }
