@@ -47,7 +47,8 @@ app.post('/slide', function(request, response){
     try {
             console.log(request.body);
             response.send(Slide.add({title:request.body.title, header:request.body.header, content:request.body.content }));
-    }
+    		console.log(slides);
+    }		
     catch(e) {
             response.status(404).send(e.toString());
     }

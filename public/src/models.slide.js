@@ -1,6 +1,6 @@
 var Slide = Backbone.Model.extend({
 
-	url: '/slides',
+	url: '/slide',
 	defaults: {
 		title: "",
 		header: "Slide Header",
