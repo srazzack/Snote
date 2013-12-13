@@ -10,7 +10,9 @@ $.get('/slide/', function (slides){
 	console.log(sc);
 });
 
-$.post('slide', function (slides){
+$.post('/slide/', function (slides){
+	sc.add(slides);
+	pv.render();
 	console.log('slide posted');
 	console.log(slides);
 });
