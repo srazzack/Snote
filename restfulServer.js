@@ -28,15 +28,15 @@ app.configure('production', function(){
 app.get('/', function(request, response){ 
 	response.redirect('/index.html');
 });
+
 app.get('/slide', function(request, response){
 	response.send(Slide.get());
 });
 
-
-app.get('/slide/:title', function(request, response){
+app.get('/slide/:id', function(request, response){
 	console.log("this request: ", request.url);
     try {
-            response.send(Slide.get(request.params.title));
+            response.send(Slide.get(request.params.id));
     }
     catch(e) {
             response.status(404).send(e.toString());
@@ -46,7 +46,7 @@ app.get('/slide/:title', function(request, response){
 app.post('/slide', function(request, response){
     try {
             console.log(request.body);
-            response.send(Slide.add({id:request.body.id, title:request.body.title, header:request.body.header, content:request.body.content }));
+            response.send(Slide.add({title:request.body.title, header:request.body.header, content:request.body.content }));
     		console.log(slides);
     		console.log(slides.length);
     }		
@@ -58,7 +58,7 @@ app.post('/slide', function(request, response){
 app.put('/slide/:id', function(request, response){
     try {
             console.log(request.body);
-            response.send(Slide.put({id:request.body.id, title:request.body.title, header:request.body.header, content:request.body.content }));
+            response.send(Slide.update({title:request.body.title, header:request.body.header, content:request.body.content }));
     		console.log(slides);
     }		
     catch(e) {

@@ -112,6 +112,7 @@ var ActivePresentationView = Backbone.View.extend({
         var slide = new Slide({title:"please add a title here", header: "please add a header to your slide here", content: "please add some content here"});
         this.collection.add(slide);
         slide.save();
+        console.log(slide);
     },
 
     savePresentation: function () {
