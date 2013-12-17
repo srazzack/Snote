@@ -2,16 +2,20 @@ var SlidesCollection = Backbone.Collection.extend({
 
 	model:Slide,
 
+	urlRoot: '/slide',
+
 	deleteSlide: function (slide) {
 		console.log(_.functions(this.model));
 		this.remove(slide);
 		console.log("In slides collection: function deleteSlide");
 		slide.destroy({success: function(model, response){
-			console.log(model, response, "<-- this was the response, and this code ran");
+			console.log(model, response);
 			}
 		});
-		console.log(slide.cid);
+	},
 
+	saveSlide: function (slide) {
+		slide.save();
 	},
 
 	moveSlide:function(slide, newIndex) {

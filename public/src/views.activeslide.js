@@ -10,18 +10,21 @@ var ActiveSlideView = Backbone.View.extend({
         this.$el.find("#slideTitle").inline({
             callback: function (text) {
                 that.model.set({title:text});
+                that.model.save();
             }
         });
 
         this.$el.find("#slideHeader").inline({
             callback: function (text) {
                 that.model.set({header:text});
+                that.model.save();
             }
         });
 
         this.$el.find("#slideContent").inline({
             callback: function (text) {
                 that.model.set({content:text});
+                that.model.save();
             }
         });
         return this;    
@@ -39,7 +42,6 @@ var ActiveSlideView = Backbone.View.extend({
     },
 
     startSlideShow: function() {
-        console.log(sc);
         var slideShow = new SlideShowView({collection: sc});
         slideShow.render();
     },

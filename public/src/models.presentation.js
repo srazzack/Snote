@@ -23,7 +23,7 @@ var Presentation = Backbone.Model.extend({
 		this.on("change", function(model) {
 			console.log( "The selected slide is set to: " + model.get("selectedSlide")); 
 			console.log("The selected theme is set to: " + model.get("selectedTheme"));
-		})
+		});
 	},
 
 	setPresentationTitle: function (title) {

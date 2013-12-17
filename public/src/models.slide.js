@@ -1,7 +1,8 @@
 var Slide = Backbone.Model.extend({
 
-	url: '/slide',
+	urlRoot: '/slide',
 	defaults: {
+		id: _.uniqueId(),
 		title: "",
 		header: "Slide Header",
 		content: "Paragraph"
@@ -10,7 +11,8 @@ var Slide = Backbone.Model.extend({
 	initalize: function(){
 
 		this.validate();
-		this.id = _.uniqueId('slide_');
+		//this.id = _.uniqueId();
+		console.log(this.id);
 		
 		this.on("change:title", function(model){
 			console.log('title changed to: ' + model.get("title"));
